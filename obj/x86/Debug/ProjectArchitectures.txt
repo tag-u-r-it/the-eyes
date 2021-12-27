@@ -1,0 +1,1 @@
+C:\projects\the-eyes\the-eyes.csproj;x86
