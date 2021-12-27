@@ -41,15 +41,15 @@ namespace the_eyes
         {
             while (true)
             {
-                await Task.Delay(60);
+                await Task.Delay(30);
                 var pointerPosition = Windows.UI.Core.CoreWindow.GetForCurrentThread().PointerPosition;
                 line.X2 = pointerPosition.X - Window.Current.Bounds.X;
                 line.Y2 = pointerPosition.Y - Window.Current.Bounds.Y;
-                if (line.X2 < left_eye.ActualOffset.X + left_eye.Width)
+                if (line.X2 < left_eye.ActualOffset.X-15 + left_eye.Width && line.X2 > left_eye.ActualOffset.X)
                 {
                     Canvas.SetLeft(left_iris, line.X2);
                 }
-                if (line.Y2 < left_eye.ActualOffset.Y + left_eye.Height)
+                if (line.Y2 < left_eye.ActualOffset.Y-15 + left_eye.Height && line.Y2 > left_eye.ActualOffset.Y)
                 {
                     Canvas.SetTop(left_iris, line.Y2);
                 }
