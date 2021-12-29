@@ -1,4 +1,5 @@
 ﻿
+using System.Drawing;
 using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -18,9 +19,12 @@ namespace the_eyes
         {
             this.InitializeComponent();
 
-            //line.Stroke = new SolidColorBrush(Windows.UI.Colors.Red);
+            line.Stroke = new SolidColorBrush(Windows.UI.Colors.Red);
             line.X1 = left_eye.ActualOffset.X + left_eye.Width/2;
             line.Y1 = left_eye.ActualOffset.Y + left_eye.Height/2;
+            line_max.Stroke = new SolidColorBrush(Windows.UI.Colors.Green);
+            line_max.X1 = left_eye.ActualOffset.X + left_eye.Width / 2;
+            line_max.Y1 = left_eye.ActualOffset.Y + left_eye.Height / 2;
 
             //line2.Stroke = new SolidColorBrush(Windows.UI.Colors.Red);
             line2.X1 = right_eye.ActualOffset.X + right_eye.Width / 2;
@@ -30,27 +34,17 @@ namespace the_eyes
             line.X2 = pointerPosition.X - Window.Current.Bounds.X;
             line.Y2 = pointerPosition.Y - Window.Current.Bounds.Y;
 
-            //create_eye(0, 0);
+        }
 
-        }
-        private void create_eye(int x, int y)
+        static bool isInside(double circle_x, double circle_y,
+                                  double rad, double x, double y)
         {
-            Ellipse eye = new Ellipse();
-            eye.Width = 200;
-            eye.Height = 200;
-            eye.Fill = new SolidColorBrush(Windows.UI.Colors.White);
-            Main_canvas.Children.Add(eye);
-        }
-        static bool isInside(int circle_x, int circle_y, int rad, int x, int y)
-        {
-            // Compare radius of circle with
-            // distance of its center from
-            // given point
             if ((x - circle_x) * (x - circle_x) + (y - circle_y) * (y - circle_y) <= rad * rad)
                 return true;
             else
                 return false;
         }
+
         private async void refresh_sight(object sender, RoutedEventArgs e)
         {
             while (true)
@@ -61,13 +55,31 @@ namespace the_eyes
                 //left eye
                 line.X2 = pointerPosition.X - Window.Current.Bounds.X;
                 line.Y2 = pointerPosition.Y - Window.Current.Bounds.Y;
-                if (line.X2 < left_eye.ActualOffset.X-15 + left_eye.Width && line.X2 > left_eye.ActualOffset.X)
+                left_iris.CenterPoint = new System.Numerics.Vector3((float)line.X2, (float)line.Y2, 0.0f);
+                //if (line.X2 < left_eye.ActualOffset.X-15 + left_eye.Width && line.X2 > left_eye.ActualOffset.X)
+                //{
+                //    Canvas.SetLeft(left_iris, line.X2);
+                //}
+                //if (line.Y2 < left_eye.ActualOffset.Y-15 + left_eye.Height && line.Y2 > left_eye.ActualOffset.Y)
+                //{
+                //    Canvas.SetTop(left_iris, line.Y2);
+                //}
+                double circle_x = left_eye.ActualOffset.X + left_eye.Width / 2;
+                double circle_y = left_eye.ActualOffset.Y + left_eye.Height / 2;
+                double x = pointerPosition.X - Window.Current.Bounds.X;
+                double y = pointerPosition.Y - Window.Current.Bounds.Y;
+                double rad = left_eye.Width / 2;
+                if (isInside(circle_x, circle_y, rad, x, y))
                 {
+                    line_max.X2 = pointerPosition.X - Window.Current.Bounds.X;
+                    line_max.Y2 = pointerPosition.Y - Window.Current.Bounds.Y;
                     Canvas.SetLeft(left_iris, line.X2);
-                }
-                if (line.Y2 < left_eye.ActualOffset.Y-15 + left_eye.Height && line.Y2 > left_eye.ActualOffset.Y)
-                {
                     Canvas.SetTop(left_iris, line.Y2);
+                }
+                else
+                {
+
+                    debug.Text = (line.X2 - line.X1).ToString();
                 }
 
                 //right eye
