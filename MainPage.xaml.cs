@@ -87,8 +87,8 @@ namespace the_eyes
                     double y1 = line.Y1 + rad * Math.Cos(-angle * Math.PI / 180f);
                     line_max.X2 = x1;
                     line_max.Y2 = y1;
-                    Canvas.SetLeft(left_iris, line_max.X2);
-                    Canvas.SetTop(left_iris, line_max.Y2);
+                    Canvas.SetLeft(left_iris, line_max.X2 - left_iris.ActualWidth / 2);
+                    Canvas.SetTop(left_iris, line_max.Y2 - left_iris.ActualWidth / 2);
                 }
 
                 //right eye
@@ -117,8 +117,8 @@ namespace the_eyes
                     double y1 = line2.Y1 + rad * Math.Cos(-angle * Math.PI / 180f);
                     line_max2.X2 = x1;
                     line_max2.Y2 = y1;
-                    Canvas.SetLeft(right_iris, line_max2.X2);
-                    Canvas.SetTop(right_iris, line_max2.Y2);
+                    Canvas.SetLeft(right_iris, line_max2.X2 - right_iris.ActualWidth / 2);
+                    Canvas.SetTop(right_iris, line_max2.Y2 - right_iris.ActualWidth / 2);
                 }
                 Main_canvas.UpdateLayout();
             }
