@@ -10,13 +10,13 @@
 
     <Canvas x:Name="Main_canvas">
         <Ellipse x:Name="left_eye" Fill="WhiteSmoke" Width="100" Height="100" Canvas.Left="250" Canvas.Top="200"/>
-        <Line x:Name="line" X2="100" Fill="Red" Loaded="refresh_sight"/>
-        <Line x:Name="line_max" X2="100" Fill="Green" Loaded="refresh_sight"/>
+        <Line x:Name="line" X2="100" Fill="Red" Loaded="Refresh_sight"/>
+        <Line x:Name="line_max" X2="100" Fill="Green" Loaded="Refresh_sight"/>
         <Ellipse x:Name="left_iris" Fill="Black" Width="20" Height="20"/>
         
         <Ellipse x:Name="right_eye" Fill="WhiteSmoke" Width="100" Height="100" Canvas.Left="500" Canvas.Top="200"/>
-        <Line x:Name="line2" X2="100" Fill="Red" Loaded="refresh_sight"/>
-        <Line x:Name="line_max2" X2="100" Fill="Green" Loaded="refresh_sight"/>
+        <Line x:Name="line2" X2="100" Fill="Red" Loaded="Refresh_sight"/>
+        <Line x:Name="line_max2" X2="100" Fill="Green" Loaded="Refresh_sight"/>
         <Ellipse x:Name="right_iris" Fill="Black" Width="20" Height="20"/>
     </Canvas>
 </Page>

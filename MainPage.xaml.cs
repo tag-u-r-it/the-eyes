@@ -20,19 +20,19 @@ namespace the_eyes
         {
             this.InitializeComponent();
 
-            line.Stroke = new SolidColorBrush(Windows.UI.Colors.Red);
+            //line.Stroke = new SolidColorBrush(Windows.UI.Colors.Red);
+            //line_max.Stroke = new SolidColorBrush(Windows.UI.Colors.Green);
             line.X1 = left_eye.ActualOffset.X + left_eye.Width/2;
-            line.Y1 = left_eye.ActualOffset.Y + left_eye.Height/2;
-            line_max.Stroke = new SolidColorBrush(Windows.UI.Colors.Green);
+            line.Y1 = left_eye.ActualOffset.Y + left_eye.Height/2;            
             line_max.X1 = left_eye.ActualOffset.X + left_eye.Width / 2;
             line_max.Y1 = left_eye.ActualOffset.Y + left_eye.Height / 2;
-            line_max2.X1 = right_eye.ActualOffset.X + right_eye.Width / 2;
-            line_max2.Y1 = right_eye.ActualOffset.Y + right_eye.Height / 2;
 
-            line2.Stroke = new SolidColorBrush(Windows.UI.Colors.Red);
-            line_max2.Stroke = new SolidColorBrush(Windows.UI.Colors.Green);
+            //line2.Stroke = new SolidColorBrush(Windows.UI.Colors.Red);
+            //line_max2.Stroke = new SolidColorBrush(Windows.UI.Colors.Green);
             line2.X1 = right_eye.ActualOffset.X + right_eye.Width / 2;
             line2.Y1 = right_eye.ActualOffset.Y + right_eye.Height / 2;
+            line_max2.X1 = right_eye.ActualOffset.X + right_eye.Width / 2;
+            line_max2.Y1 = right_eye.ActualOffset.Y + right_eye.Height / 2;
 
             var pointerPosition = Windows.UI.Core.CoreWindow.GetForCurrentThread().PointerPosition;
             line.X2 = pointerPosition.X - Window.Current.Bounds.X;
@@ -40,7 +40,7 @@ namespace the_eyes
 
         }
 
-        static bool isInside(double circle_x, double circle_y, double rad, double x, double y)
+        static bool IsInside(double circle_x, double circle_y, double rad, double x, double y)
         {
             if ((x - circle_x) * (x - circle_x) + (y - circle_y) * (y - circle_y) <= rad * rad)
                 return true;
@@ -54,7 +54,7 @@ namespace the_eyes
             float yDiff = p2.Y - p1.Y;
             return Math.Atan2(yDiff, xDiff) * (180 / Math.PI);
         }
-        private async void refresh_sight(object sender, RoutedEventArgs e)
+        private async void Refresh_sight(object sender, RoutedEventArgs e)
         {
             while (true)
             {
@@ -70,7 +70,7 @@ namespace the_eyes
                 double x = pointerPosition.X - Window.Current.Bounds.X;
                 double y = pointerPosition.Y - Window.Current.Bounds.Y;
                 double rad = left_eye.Width / 2;
-                if (isInside(circle_x, circle_y, rad, x, y))
+                if (IsInside(circle_x, circle_y, rad, x, y))
                 {
                     line_max.X2 = pointerPosition.X - Window.Current.Bounds.X;
                     line_max.Y2 = pointerPosition.Y - Window.Current.Bounds.Y;
@@ -100,7 +100,7 @@ namespace the_eyes
                 x = pointerPosition.X - Window.Current.Bounds.X;
                 y = pointerPosition.Y - Window.Current.Bounds.Y;
                 rad = right_eye.Width / 2;
-                if (isInside(circle_x, circle_y, rad, x, y))
+                if (IsInside(circle_x, circle_y, rad, x, y))
                 {
                     line_max2.X2 = pointerPosition.X - Window.Current.Bounds.X;
                     line_max2.Y2 = pointerPosition.Y - Window.Current.Bounds.Y;
