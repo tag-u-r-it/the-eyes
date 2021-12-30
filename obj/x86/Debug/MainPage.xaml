@@ -16,9 +16,8 @@
         
         <Ellipse x:ConnectionId='7' x:Name="right_eye" Fill="WhiteSmoke" Width="100" Height="100" Canvas.Left="500" Canvas.Top="200"/>
         <Line x:ConnectionId='8' x:Name="line2" X2="100" Fill="Red"                       />
-        <Ellipse x:ConnectionId='9' x:Name="right_iris" Fill="Black" Width="20" Height="20"/>
-
-        <TextBox x:ConnectionId='10' x:Name="debug" Foreground="White" Text="TEST"></TextBox>
+        <Line x:ConnectionId='9' x:Name="line_max2" X2="100" Fill="Green"                       />
+        <Ellipse x:ConnectionId='10' x:Name="right_iris" Fill="Black" Width="20" Height="20"/>
     </Canvas>
 </Page>
 

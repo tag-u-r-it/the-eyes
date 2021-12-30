@@ -24,10 +24,6 @@
       <RootProperty Name="Fill" />
       <RootEvent Name="Loaded" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
-      <RootProperty Name="Foreground" />
-      <RootProperty Name="Text" />
-    </RootType>
     <RootType FullName="the_eyes.MainPage" />
   </Roots.RootTypes>
 </Roots>
