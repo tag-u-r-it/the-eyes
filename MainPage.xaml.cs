@@ -109,12 +109,12 @@ namespace the_eyes
                 }
                 else
                 {
-                    PointF p1 = new PointF((float)line.X1, (float)line.Y1);
-                    PointF p2 = new PointF((float)line.X2, (float)line.Y2);
+                    PointF p1 = new PointF((float)line2.X1, (float)line2.Y1);
+                    PointF p2 = new PointF((float)line2.X2, (float)line2.Y2);
                     double angle = GetAngleOfLineBetweenTwoPoints(p1, p2);
                     angle = angle - 90;
-                    double x1 = line2.X1 + rad * Math.Sin(angle * Math.PI / 180f);
-                    double y1 = line2.Y1 + rad * Math.Cos(angle * Math.PI / 180f);
+                    double x1 = line2.X1 + rad * Math.Sin(-angle * Math.PI / 180f);
+                    double y1 = line2.Y1 + rad * Math.Cos(-angle * Math.PI / 180f);
                     line_max2.X2 = x1;
                     line_max2.Y2 = y1;
                     Canvas.SetLeft(right_iris, line_max2.X2);
