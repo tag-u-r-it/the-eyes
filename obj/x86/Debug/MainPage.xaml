@@ -8,16 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Canvas x:ConnectionId='2' x:Name="Main_canvas">
-        <Ellipse x:ConnectionId='3' x:Name="left_eye" Fill="WhiteSmoke" Width="100" Height="100" Canvas.Left="250" Canvas.Top="200"/>
-        <Line x:ConnectionId='4' x:Name="line" X2="100" Fill="Red"                       />
-        <Line x:ConnectionId='5' x:Name="line_max" X2="100" Fill="Green"                       />
-        <Ellipse x:ConnectionId='6' x:Name="left_iris" Fill="Black" Width="20" Height="20"/>
-        
-        <Ellipse x:ConnectionId='7' x:Name="right_eye" Fill="WhiteSmoke" Width="100" Height="100" Canvas.Left="500" Canvas.Top="200"/>
-        <Line x:ConnectionId='8' x:Name="line2" X2="100" Fill="Red"                       />
-        <Line x:ConnectionId='9' x:Name="line_max2" X2="100" Fill="Green"                       />
-        <Ellipse x:ConnectionId='10' x:Name="right_iris" Fill="Black" Width="20" Height="20"/>
-    </Canvas>
+    <Canvas x:ConnectionId='2' x:Name="Main_canvas"/>
+
 </Page>
 
