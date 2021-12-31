@@ -37,6 +37,9 @@ namespace the_eyes
             var pointerPosition = Windows.UI.Core.CoreWindow.GetForCurrentThread().PointerPosition;
             line.X2 = pointerPosition.X - Window.Current.Bounds.X;
             line.Y2 = pointerPosition.Y - Window.Current.Bounds.Y;
+            
+            The_eye eye = new The_eye();
+            eye.Init_eye(Main_canvas);
 
         }
 
@@ -48,7 +51,7 @@ namespace the_eyes
                 return false;
         }
 
-        public static double GetAngleOfLineBetweenTwoPoints(PointF p1, PointF p2)
+        private static double GetAngleOfLineBetweenTwoPoints(PointF p1, PointF p2)
         {
             float xDiff = p2.X - p1.X;
             float yDiff = p2.Y - p1.Y;
