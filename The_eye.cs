@@ -24,6 +24,15 @@ namespace the_eyes
             float yDiff = p2.Y - p1.Y;
             return Math.Atan2(yDiff, xDiff) * (180 / Math.PI);
         }
+        public async void Update_position_on_canvas(Canvas can, Ellipse eye, double pos_x, double pos_y)
+        {
+            while(true)
+            {
+                await Task.Delay(30);
+                Canvas.SetLeft(eye, pos_x);
+                Canvas.SetTop(eye, pos_y);
+            }
+        }
         private async void Refresh_eye(Canvas can, Ellipse eye, Ellipse iris, Line line, Line line_max)
         {
             while (true)

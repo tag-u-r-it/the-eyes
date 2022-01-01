@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Canvas x:ConnectionId='2' x:Name="Main_canvas"/>
+    <Canvas x:ConnectionId='2' x:Name="Canvas_main"                  />
 
 </Page>
 

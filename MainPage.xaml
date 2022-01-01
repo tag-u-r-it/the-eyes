@@ -8,6 +8,6 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Canvas x:Name="Main_canvas"/>
+    <Canvas x:Name="Canvas_main" Loaded="Set_eyes"/>
 
 </Page>
