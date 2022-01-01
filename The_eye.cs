@@ -24,13 +24,28 @@ namespace the_eyes
             float yDiff = p2.Y - p1.Y;
             return Math.Atan2(yDiff, xDiff) * (180 / Math.PI);
         }
-        public async void Update_position_on_canvas(Canvas can, Ellipse eye, double pos_x, double pos_y)
+        private PointF Iris_coord = new PointF();
+        private void Set_iris_coord(PointF point)
+        {
+            Iris_coord = point;
+        }
+        private async void Update_position_on_canvas(Canvas can, Ellipse eye, Ellipse iris, Line line, Line line_max, int id)
         {
             while(true)
             {
-                await Task.Delay(30);
-                Canvas.SetLeft(eye, pos_x);
-                Canvas.SetTop(eye, pos_y);
+                await Task.Delay(60);
+                if (id == 0) Canvas.SetLeft(eye, can.ActualWidth / 4 + eye.ActualWidth/2);
+                if (id == 1) Canvas.SetLeft(eye, can.ActualWidth / 2 + eye.ActualWidth/2);
+                Canvas.SetTop(eye, can.ActualHeight / 2);
+
+                Canvas.SetLeft(iris, Iris_coord.X);
+                Canvas.SetTop(iris, Iris_coord.Y);
+
+                line.X1 = eye.ActualOffset.X + eye.Height / 2;
+                line.Y1 = eye.ActualOffset.Y + eye.Height / 2;
+
+                line_max.X1 = eye.ActualOffset.X + eye.Height / 2;
+                line_max.Y1 = eye.ActualOffset.Y + eye.Height / 2;
             }
         }
         private async void Refresh_eye(Canvas can, Ellipse eye, Ellipse iris, Line line, Line line_max)
@@ -59,7 +74,7 @@ namespace the_eyes
                     PointF p1 = new PointF((float)line.X1, (float)line.Y1);
                     PointF p2 = new PointF((float)line.X2, (float)line.Y2);
                     double angle = GetAngleOfLineBetweenTwoPoints(p1, p2);
-                    angle = angle - 90;
+                    angle -= 90;
                     double x1 = line.X1 + rad * Math.Sin(-angle * Math.PI / 180f);
                     double y1 = line.Y1 + rad * Math.Cos(-angle * Math.PI / 180f);
                     line_max.X2 = x1;
@@ -67,10 +82,12 @@ namespace the_eyes
                     Canvas.SetLeft(iris, line_max.X2 - iris.ActualWidth / 2);
                     Canvas.SetTop(iris, line_max.Y2 - iris.ActualWidth / 2);
                 }
+                PointF iris_point = new PointF((float)iris.ActualOffset.X, (float)iris.ActualOffset.Y);
+                Set_iris_coord(iris_point);
                 can.UpdateLayout();
             }
         }
-        public void Init_eye(Canvas can, double pos_x, double pos_y, bool debug)
+        public void Init_eye(Canvas can, double pos_x, double pos_y, int id, bool debug)
         {
             Ellipse eye = new Ellipse();
             eye.Width = 100;
@@ -107,6 +124,7 @@ namespace the_eyes
             Canvas.SetTop(line_max, 0);
 
             Refresh_eye(can, eye, iris, line, line_max);
+            Update_position_on_canvas(can, eye, iris, line, line_max, id);
         }
     }
 }

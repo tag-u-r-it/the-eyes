@@ -21,8 +21,8 @@ namespace the_eyes
         {
             The_eye eye_left = new The_eye();
             The_eye eye_right = new The_eye();
-            eye_left.Init_eye(Canvas_main, Canvas_main.ActualWidth / 4, Canvas_main.ActualHeight / 2 , false);
-            eye_right.Init_eye(Canvas_main, Canvas_main.ActualWidth / 2, Canvas_main.ActualHeight / 2, false);
+            eye_left.Init_eye(Canvas_main, Canvas_main.ActualWidth / 4, Canvas_main.ActualHeight / 2, 0, false);
+            eye_right.Init_eye(Canvas_main, Canvas_main.ActualWidth / 2, Canvas_main.ActualHeight / 2, 1, false);
 
             //eye_left.Update_position_on_canvas(Canvas_main, eye_left, Canvas_main.ActualWidth / 4, Canvas_main.ActualHeight / 2);
         }
