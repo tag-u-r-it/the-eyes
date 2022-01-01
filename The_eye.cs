@@ -29,13 +29,13 @@ namespace the_eyes
         {
             Iris_coord = point;
         }
-        private async void Update_position_on_canvas(Canvas can, Ellipse eye, Ellipse iris, Line line, Line line_max, int id)
+        private async void Refresh_eye_position(Canvas can, Ellipse eye, Ellipse iris, Line line, Line line_max, string id)
         {
             while(true)
             {
                 await Task.Delay(60);
-                if (id == 0) Canvas.SetLeft(eye, can.ActualWidth / 4 + eye.ActualWidth/2);
-                if (id == 1) Canvas.SetLeft(eye, can.ActualWidth / 2 + eye.ActualWidth/2);
+                if (id == "left") Canvas.SetLeft(eye, can.ActualWidth / 4 + eye.ActualWidth/2);
+                if (id == "right") Canvas.SetLeft(eye, can.ActualWidth / 2 + eye.ActualWidth/2);
                 Canvas.SetTop(eye, can.ActualHeight / 2);
 
                 Canvas.SetLeft(iris, Iris_coord.X);
@@ -48,7 +48,7 @@ namespace the_eyes
                 line_max.Y1 = eye.ActualOffset.Y + eye.Height / 2;
             }
         }
-        private async void Refresh_eye(Canvas can, Ellipse eye, Ellipse iris, Line line, Line line_max)
+        private async void Refresh_eye_direction(Canvas can, Ellipse eye, Ellipse iris, Line line, Line line_max)
         {
             while (true)
             {
@@ -87,23 +87,19 @@ namespace the_eyes
                 can.UpdateLayout();
             }
         }
-        public void Init_eye(Canvas can, double pos_x, double pos_y, int id, bool debug)
+        public void Init_eye(Canvas can, string id, bool debug)
         {
             Ellipse eye = new Ellipse();
             eye.Width = 100;
             eye.Height = 100;
             eye.Fill = new SolidColorBrush(Windows.UI.Colors.WhiteSmoke);
             can.Children.Add(eye);
-            Canvas.SetLeft(eye, pos_x);
-            Canvas.SetTop(eye, pos_y);
 
             Ellipse iris = new Ellipse();
             iris.Width = 20;
             iris.Height = 20;
             iris.Fill = new SolidColorBrush(Windows.UI.Colors.Black);
             can.Children.Add(iris);
-            Canvas.SetLeft(iris, eye.ActualOffset.X);
-            Canvas.SetTop(iris, eye.ActualOffset.Y);
 
             Line line = new Line();
             if (debug) line.Stroke = new SolidColorBrush(Windows.UI.Colors.Red);
@@ -111,8 +107,6 @@ namespace the_eyes
             line.X1 = eye.ActualOffset.X + eye.Height / 2;
             line.Y1 = eye.ActualOffset.Y + eye.Height / 2;
             can.Children.Add(line);
-            Canvas.SetLeft(line, 0);
-            Canvas.SetTop(line, 0);
 
             Line line_max = new Line();
             if (debug) line_max.Stroke = new SolidColorBrush(Windows.UI.Colors.Green);
@@ -120,11 +114,9 @@ namespace the_eyes
             line_max.X1 = eye.ActualOffset.X + eye.Height / 2;
             line_max.Y1 = eye.ActualOffset.Y + eye.Height / 2;
             can.Children.Add(line_max);
-            Canvas.SetLeft(line_max, 0);
-            Canvas.SetTop(line_max, 0);
 
-            Refresh_eye(can, eye, iris, line, line_max);
-            Update_position_on_canvas(can, eye, iris, line, line_max, id);
+            Refresh_eye_direction(can, eye, iris, line, line_max);
+            Refresh_eye_position(can, eye, iris, line, line_max, id);
         }
     }
 }
